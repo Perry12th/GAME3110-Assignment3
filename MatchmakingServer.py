@@ -19,10 +19,10 @@ def connectionLoop(sock):
    # while True:
         # Get the player List from the sim script
         print("Waiting for players")
-        #LobbyList, addr = sock.recvfrom(1024)
+        LobbyList, addr = sock.recvfrom(1024)
         print("Got something")
-        #LobbyList = json.loads(LobbyList)
-        LobbyList = ['107', '045', '001', '022', '666', '013']
+        LobbyList = json.loads(LobbyList)
+        #LobbyList = ['107', '045', '001', '022', '666', '013']
         print(LobbyList)
 
         # If there's enough players to make a lobby
@@ -60,9 +60,9 @@ def connectionLoop(sock):
                 print('Sending the following game data back to the sim script')
                 print(gameData)
                 message = json.dumps(gameData)
-                #sock.sendto(bytes(message, 'utf8'), addr[0], addr[1])
+                sock.sendto(bytes(message, 'utf8'), addr)
                 
-        #time.sleep(1.0)
+        time.sleep(1.0)
 
 
 def main():
